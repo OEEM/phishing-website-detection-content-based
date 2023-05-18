@@ -34,11 +34,7 @@ with st.expander("PROJECT DETAILS"):
     phishing_rate = int(ml.phishing_df.shape[0] / (ml.phishing_df.shape[0] + ml.legitimate_df.shape[0]) * 100)
     legitimate_rate = 100 - phishing_rate
     sizes = [phishing_rate, legitimate_rate]
-    explode = (0.1, 0)
-    fig, ax = plt.subplots()
-    ax.pie(sizes, explode=explode, labels=labels, shadow=True, startangle=90, autopct='%1.1f%%')
-    ax.axis('equal')
-    st.pyplot(fig)
+   
     # ----- !!!!! ----- #
 
     st.write('Features + URL + Label ==> Dataframe')
@@ -99,9 +95,7 @@ if choice == 'Gaussian Naive Bayes':
 elif choice == 'Support Vector Machine':
     model = ml.svm_model
     st.write('SVM model is selected!')
-elif choice == 'Decision Tree':
-    model = ml.dt_model
-    st.write('DT model is selected!')
+
 elif choice == 'Random Forest':
     model = ml.rf_model
     st.write('RF model is selected!')
@@ -112,8 +106,7 @@ elif choice == 'Neural Network':
     model = ml.nn_model
     st.write('NN model is selected!')
 else:
-    model = ml.kn_model
-    st.write('KN model is selected!')
+   
 
 
 url = st.text_input('Enter the URL')
@@ -131,8 +124,7 @@ if st.button('Check!'):
                 st.success("This web page seems a legitimate!")
                 st.balloons()
             else:
-                st.warning("Attention! This web page is a potential PHISHING!")
-                st.snow()
+              
 
     except re.exceptions.RequestException as e:
         print("--> ", e)
